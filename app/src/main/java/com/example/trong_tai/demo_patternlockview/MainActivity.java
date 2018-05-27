@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (mListPointInteger.get(0) != 0){
                     Toast.makeText(getApplicationContext(), "wrong drawing", Toast.LENGTH_LONG).show();
-                    mListPointInteger.removeAll(mListPointInteger);
-                    mList.removeAll(mList);
+//                    mListPointInteger.removeAll(mListPointInteger);
+//                    mList.removeAll(mList);
                     return;
                 }
 //                if (mListPointInteger.size() == 0){
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     public String GetTurn(int nextDirection, int currentDirection){
         if ((nextDirection >= currentDirection)){
             if (((Math.abs(nextDirection - currentDirection) >= 4) &&
-                    (Math.abs(nextDirection - currentDirection) <= 6)) ||
+                    (Math.abs(nextDirection - currentDirection) < 6)) ||
                     (Math.abs(nextDirection - currentDirection) >= 0) &&
                             (Math.abs(nextDirection - currentDirection) <= 2)){
                 return "right";
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             return "left";
         }else{
             if (((Math.abs(nextDirection - currentDirection) >= 4) &&
-                    (Math.abs(nextDirection - currentDirection) <= 6)) ||
+                    (Math.abs(nextDirection - currentDirection) < 6)) ||
                     (Math.abs(nextDirection - currentDirection) >= 0) &&
                             (Math.abs(nextDirection - currentDirection) <= 2)){
                 return "left";
@@ -155,11 +155,13 @@ public class MainActivity extends AppCompatActivity {
             if((Math.abs(nextDirection - currentDirection) <= 2) ||
                     (Math.abs(nextDirection - currentDirection) >= 6))
                 return "ahead";
+            else return "back";
         }else{
             if((Math.abs(nextDirection - currentDirection) <= 2))
                 return "ahead";
+            else return "back";
         }
-        return "back";
+//        return "back";
     }
 
     public void Address(List<Integer> listPoint){
@@ -168,7 +170,10 @@ public class MainActivity extends AppCompatActivity {
         int mCurrentDirection = mOriginalDirection;
         int mNextDirection = mOriginalDirection;
         for (int i = 0; i < listPoint.size(); i++){
-            if(!checkNumber(mCurrentPoint, mNextPoint)) return;
+            if(!checkNumber(mCurrentPoint, mNextPoint)) {
+                Toast.makeText(getApplicationContext(), "wrong drawing", Toast.LENGTH_LONG).show();
+                return;
+            }
         }
         for (int i = 0; i < listPoint.size() - 1; i++){
             mCurrentPoint = listPoint.get(i);
@@ -177,53 +182,119 @@ public class MainActivity extends AppCompatActivity {
                 mNextDirection = 2;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if ((mNextPoint - mCurrentPoint) == 5){ // direction 4
                 mNextDirection = 4;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if ((mCurrentPoint - mNextPoint) == 1){ // direction 6
                 mNextDirection = 6;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if ((mCurrentPoint - mNextPoint) == 5){ // direction 0
-                mNextDirection = 8;
+                mNextDirection = 0;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if (((mCurrentPoint + 5) + (mCurrentPoint + 1) - mCurrentPoint) == mNextPoint){ // direction 3
                 mNextDirection = 3;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if (((mCurrentPoint - 5) + (mCurrentPoint + 1) - mCurrentPoint) == mNextPoint){ // direction 1
                 mNextDirection = 1;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if (((mCurrentPoint - 5) + (mCurrentPoint - 1) - mCurrentPoint) == mNextPoint){ // direction 7
                 mNextDirection = 7;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
             if (((mCurrentPoint + 5) + (mCurrentPoint - 1) - mCurrentPoint) == mNextPoint){ // direction 5
                 mNextDirection = 5;
                 //TODO address
                 GetWay(mCurrentDirection, mNextDirection);
+                Log.e("Direct: ", mCurrentDirection + ", " + mNextDirection);
+                if (Getdirection(mNextDirection, mCurrentDirection).equals("back")){
+                    if (mNextDirection > 4){
+                        mCurrentDirection = mNextDirection - 4;
+                    }else {
+                        mCurrentDirection = mNextDirection + 4;
+                    }
+                }else
                 mCurrentDirection = mNextDirection;
             }
         }
         mList.removeAll(mList);
         mListPointInteger.removeAll(mListPointInteger);
+        mCurrentDirection = mOriginalDirection;
+        mNextDirection = mOriginalDirection;
     }
 
     public void GetWay(int currentDirection, int nextDirection){
