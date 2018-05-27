@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <com.andrognito.patternlockview.PatternLockView
+        android:id="@+id/pattern_lock_view"
+        app:dotCount="5"
+        app:dotNormalSize="@dimen/dp_12"
+        app:dotSelectedSize="@dimen/dp_24"
+        app:normalStateColor="@color/black"
+        app:correctStateColor="@color/green"
+        app:wrongStateColor="@color/red"
+        android:layout_centerInParent="true"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="@dimen/dp_300"/>
+
+    <Button
+        android:id="@+id/btn_address"
+        android:text="OK"
+        android:layout_marginTop="@dimen/dp_12"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/pattern_lock_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>
