@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgress(List<PatternLockView.Dot> progressPattern) {
                 mList.add(PatternLockUtils.patternToString(mPatternLockView, progressPattern));
-
             }
 
             @Override
             public void onComplete(List<PatternLockView.Dot> pattern) {
                 if(mList.size() != 0){
+                    mListPointInteger.removeAll(mListPointInteger);
                     for (int i = 0; i < mList.size(); i++){
                         if (i == 0){
                             mListPointInteger.add(Integer.parseInt(mList.get(i)));
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
-//                else{
+                mList.removeAll(mList);
+                //                else{
 //                    Log.e("abc","wrong");
 //                }
 
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCleared() {
-
+                Log.e("cleared", "here");
             }
         });
 
@@ -82,24 +83,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mListPointInteger.size() == 0){
                     Toast.makeText(getApplicationContext(), "wrong drawing", Toast.LENGTH_LONG).show();
+                    mListPointInteger.removeAll(mListPointInteger);
+                    mList.removeAll(mList);
                     return;
                 }
                 if (mListPointInteger.get(0) != 0){
                     Toast.makeText(getApplicationContext(), "wrong drawing", Toast.LENGTH_LONG).show();
-//                    mListPointInteger.removeAll(mListPointInteger);
-//                    mList.removeAll(mList);
+                    mListPointInteger.removeAll(mListPointInteger);
+                    mList.removeAll(mList);
                     return;
                 }
-//                if (mListPointInteger.size() == 0){
-//                    Toast.makeText(getApplicationContext(), "Please! Draw anything!", Toast.LENGTH_LONG).show();
-//                }else{
-//                    for (int i = 0; i <= mListPointInteger.size() - 2; i++){
-//                        Log.e("way: ", GetTurn(mListPointInteger.get(i + 1), mListPointInteger.get(i)) + ", " +
-//                                GetConnet(mListPointInteger.get(i + 1), mListPointInteger.get(i)) + ", " +
-//                                Getdirection(mListPointInteger.get(i + 1), mListPointInteger.get(i)));
-//                    }
-//                    mListPointInteger.removeAll(mListPointInteger);
-//                    mList.removeAll(mList);
 //                }
                 Address(mListPointInteger);
             }
