@@ -176,9 +176,6 @@ public class MainActivity extends AppCompatActivity {
             if ((mNextPoint - mCurrentPoint) == 1){ // direction 2
                 mNextDirection = 2;
                 //TODO address
-//                Log.e("way: ", GetTurn(mNextDirection, mCurrentDirection) + ", " +
-//                        GetConnet(mNextPoint, mCurrentPoint) + ", " +
-//                        Getdirection(mNextPoint, mCurrentPoint));
                 GetWay(mCurrentDirection, mNextDirection);
                 mCurrentDirection = mNextDirection;
             }
